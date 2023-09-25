@@ -4,6 +4,7 @@ const popUp = document.querySelector(".bground");
 
 btnClose.addEventListener("click", () => {
   popUp.style.display = "none"; // La pop-up disparait au clic
+  form.reset(); // Réinitialise le form
 });
 
 // =============== Validation du formulaire =============== //
@@ -108,7 +109,6 @@ toggleErrorMessage(CGU, validateCGU, "Vous devez vérifier que vous acceptez les
 function validate(event) {
   event.preventDefault();
 }
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const errorMsg = form.querySelector(".error-msg");
@@ -131,6 +131,7 @@ form.addEventListener("submit", (event) => {
       form.classList.remove("form-error");
     }, 2000);
   } else {
+    // Récuperation des données du formulaire
     const formData = {
       firstName: firstName.value,
       lastName: lastName.value,
@@ -141,6 +142,9 @@ form.addEventListener("submit", (event) => {
       CGU: CGU.checked,
       newsLetters: newsLetters.checked,
     };
+
+    console.log(formData);
+    // Ajout du message de confirmation
     const tyMsg = document.createElement("div");
     const tyMsgBtn = document.createElement("button");
 
@@ -154,12 +158,8 @@ form.addEventListener("submit", (event) => {
 
     tyMsgBtn.addEventListener("click", () => {
       popUp.style.display = "none";
+      tyMsg.style.display = "none";
+      form.reset(); // Réinitialise le form
     });
   }
 });
-
-// Submit du formulaire
-/*firstName.addEventListener("click", () => 
-
-  
-});*/
